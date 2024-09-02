@@ -19,7 +19,7 @@ export class JwtStrategy implements CanActivate {
       const request = context.switchToHttp().getRequest();
       const token: string = this.extractJwtFromCookie(request);
       const payload = this.jwtService.verify(token);
-      if (!token) return false;
+      if (!token) throw new UnauthorizedException('JWT token is missing');
 
       const user = this.userService.findOne(payload.username);
 

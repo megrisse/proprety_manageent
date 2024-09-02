@@ -7,12 +7,14 @@ import {
   Delete,
   BadRequestException,
   UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { userDto } from 'src/dto/user.dto';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { UserService } from 'src/user/user.service';
 import { Response } from 'express';
+import { JwtStrategy } from 'src/jwt-strategy/jwt-strategy';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -62,11 +64,12 @@ export class AuthController {
     res.send({ message: 'User registred Succefully' });
   }
 
+  @UseGuards(JwtStrategy)
   @Get('users')
   async allUsers() {
     return this.userServices.getAllUsers();
   }
-
+  @UseGuards(JwtStrategy)
   @Delete('users')
   async delete(@Body() user: userDto) {
     return this.userServices.remove(user.username);
