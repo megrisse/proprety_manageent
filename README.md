@@ -24,9 +24,8 @@ Next, start the development server with the following command:
 ```bash
 npm run start:dev
 ```
-http://localhost:3000/api
-### 3. Access the API
+### 3. Access the API Documentation
 
-Once the server is running, you can access the API endpoints and their usage guidelines by navigating to:
+API documentation is available through Swagger UI. Once the server is running, you can access the API endpoints and their usage guidelines by navigating to:
 
 http://localhost:3000/api
